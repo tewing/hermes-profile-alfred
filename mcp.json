@@ -15,7 +15,9 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "${HOME}/Documents/alfred"
+        "${HOME}/profile-alfred",
+        "${HOME}/profile-shared",
+        "${HOME}/global_shared"
       ]
     },
     {
