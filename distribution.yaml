@@ -1,0 +1,29 @@
+name: alfred
+version: 0.1.0
+description: "Personal butler agent — daily briefings, inbox triage, reminders, calm and discreet."
+hermes_requires: ">=0.12.0"
+author: "tewing"
+license: "MIT"
+
+env_requires:
+  - name: ANTHROPIC_API_KEY
+    description: "Anthropic API key used for the default Claude model in config.yaml."
+    required: true
+  - name: SLACK_BOT_TOKEN
+    description: "Slack bot token (xoxb-...) for the Slack MCP. Needed for inbox triage and notifications."
+    required: false
+    default: ""
+  - name: SLACK_USER_ID
+    description: "Your Slack user ID — used by daily-briefing to scope mentions and DMs."
+    required: false
+    default: ""
+  - name: ALFRED_TIMEZONE
+    description: "IANA timezone for scheduled briefings (e.g. America/Los_Angeles)."
+    required: false
+    default: "America/Los_Angeles"
+
+distribution_owned:
+  - SOUL.md
+  - skills/
+  - cron/
+  - distribution.yaml
