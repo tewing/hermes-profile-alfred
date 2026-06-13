@@ -1,0 +1,39 @@
+name: Check version
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read version from distribution.yaml
+        id: version
+        run: |
+          version=$(awk '/^version:/ {print $2; exit}' distribution.yaml | tr -d '"'"'"'')
+          if [ -z "$version" ]; then
+            echo "::error file=distribution.yaml::could not read version"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+          echo "found version $version"
+
+      - name: Fail if tag already exists
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          git fetch --tags --quiet
+          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+            echo "::error file=distribution.yaml::tag $TAG already exists — bump version: in distribution.yaml"
+            exit 1
+          fi
+          echo "tag $TAG is available"

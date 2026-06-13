@@ -15,9 +15,9 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "${HOME}/profile-alfred",
-        "${HOME}/profile-shared",
-        "${HOME}/global_shared"
+        "/opt/data/profile-alfred",
+        "/opt/data/profile-shared",
+        "/opt/data/cluster-shared"
       ]
     },
     {
