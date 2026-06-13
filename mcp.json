@@ -1,0 +1,32 @@
+{
+  "mcpServers": [
+    {
+      "name": "slack",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_USER_ID": "${SLACK_USER_ID}"
+      }
+    },
+    {
+      "name": "filesystem",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${HOME}/profile-alfred",
+        "${HOME}/profile-shared",
+        "${HOME}/global_shared"
+      ]
+    },
+    {
+      "name": "time",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-time"],
+      "env": {
+        "DEFAULT_TIMEZONE": "${ALFRED_TIMEZONE}"
+      }
+    }
+  ]
+}
