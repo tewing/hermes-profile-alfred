@@ -1,5 +1,5 @@
 name: alfred
-version: 0.1.0
+version: 0.1.1
 description: "Personal butler agent — daily briefings, inbox triage, reminders, calm and discreet."
 hermes_requires: ">=0.12.0"
 author: "tewing"
